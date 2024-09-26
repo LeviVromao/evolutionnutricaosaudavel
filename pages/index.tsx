@@ -41,12 +41,7 @@ export default function Home() {
     },
     ]
     setProductsToSend(products)
-    if(typeof window !== undefined) {
-      if(window.location.pathname === '/') {
-        return setPathName('TUDO')
-      }
-      setPathName(window.location.pathname)
-    }
+    setPathName(window?.location.pathname === '/' ? 'TUDO' : window.location.pathname)
   },[])
 
   return (
@@ -64,7 +59,7 @@ export default function Home() {
         </h1>
         <DrawerComp />
       </div>
-      <Products data={productToSend}/>
+      {productToSend.length > 0 && <Products data={productToSend}/>}
     </div>
   );
 }
