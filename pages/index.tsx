@@ -3,7 +3,7 @@ import DrawerComp from "./components/DrawerComp";
 import Header from "./components/Header";
 import axios from "axios"
 import Products from "./components/Products";
-import { IProductsProps } from "./services/interfaces";
+import { IProductsProps } from "@/services/interfaces";
 import { GetServerSideProps } from "next";
 
 export default function Home(products: { data:Array<IProductsProps>}) {
@@ -13,7 +13,7 @@ export default function Home(products: { data:Array<IProductsProps>}) {
     if(metaDescription) {
       console.log(metaDescription)
     }
-    
+
     if(window.location.pathname === '/') {
       return setPathName('TUDO')
     }

@@ -1,5 +1,5 @@
 import {createContext, useState, ReactNode} from "react"
-import { IProductsProps, IProductContext } from "../services/interfaces"
+import { IProductsProps, IProductContext } from "@/services/interfaces"
 
 export const ProductContext = createContext<IProductContext | undefined>(undefined)
 
@@ -8,7 +8,7 @@ export default async function ProductProvider({children}: {children: ReactNode})
   const addFeature = (newProducts: IProductsProps[]) => {
     setProductsContext([...newProducts])
   }
-  
+
   return (
     <ProductContext.Provider 
       value={

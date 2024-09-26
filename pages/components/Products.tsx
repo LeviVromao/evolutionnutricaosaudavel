@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { IProductsProps } from "../services/interfaces"
+import { IProductsProps } from "@/services/interfaces"
 
 export default function Products(products: { data: Array<IProductsProps>}){
     return (
