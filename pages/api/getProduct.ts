@@ -4,6 +4,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  const {id} = req.body
   const products = [
     {
       id: 1,
@@ -38,7 +39,7 @@ export default async function handler(
       price: 129.00
   },   
    {
-    "id": 5,
+    id: 5,
     "image": "/night_frutas_vermelhas.jpg",
     "name": "NIGTH TRAIN FRUTAS VERMELHAS 300G",
     desc: "PRÉ TREINO",
@@ -46,13 +47,14 @@ export default async function handler(
     "price": 109.00
 },
 {
-    "id": 6,
+    id: 6,
     "image": "/fresh_whey.jpg",
     "name": "FRESH WHEY DUX CHOCOLATE BELGA E AVELA 450G",
     desc: "WHEY",
     type: "WHEYS",
     "price": 159.00
-}
-]
-  res.status(200).json({ products });
+}]
+
+  const product = products.filter(prod => prod.id === Number(id))
+  res.status(200).json({ product });
 }

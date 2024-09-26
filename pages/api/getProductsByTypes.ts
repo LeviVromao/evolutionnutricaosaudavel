@@ -4,7 +4,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const products = [
+  const {url: productsType} = req.body
+  let products = [
     {
       id: 1,
       image: "/creatina_blackskull.jpg",
@@ -43,7 +44,7 @@ export default async function handler(
     "name": "NIGTH TRAIN FRUTAS VERMELHAS 300G",
     desc: "PRÉ TREINO",
     type: "PRÉTREINOS",
-    "price": 109.00
+    price: 109.00
 },
 {
     "id": 6,
@@ -51,8 +52,12 @@ export default async function handler(
     "name": "FRESH WHEY DUX CHOCOLATE BELGA E AVELA 450G",
     desc: "WHEY",
     type: "WHEYS",
-    "price": 159.00
+    price: 159.00
 }
 ]
+  if(productsType === "TUDO") {
+    return res.status(200).json({products})
+  }
+  products = products.filter(prod => prod.type === productsType)
   res.status(200).json({ products });
 }

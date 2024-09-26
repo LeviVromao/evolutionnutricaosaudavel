@@ -21,7 +21,6 @@ const categories = [
 interface NavCategoriesProps {
   carousel: string
 }
-// .replace(/\s+/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 
 export default function NavCategories(props: NavCategoriesProps){
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -40,7 +39,7 @@ export default function NavCategories(props: NavCategoriesProps){
             className="basis-1/8"
           >
             <Link 
-              href={`/${category.toLowerCase()}`}
+              href={`/products/${category.replace(/\s+/g, '')}`}
               className={`flex font-suse font-semibold
                text-gray-500 ${selectedIndex === index? 
                 'border-b-4 rounded border-gray-800': null}`}

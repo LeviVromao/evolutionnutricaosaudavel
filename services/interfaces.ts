@@ -3,7 +3,8 @@ export interface IProductsProps {
     image: string,
     name: string,
     type: string,
-    price: number
+    price: number,
+    desc: string
 }
 
 export interface IProductContext {
@@ -11,3 +12,7 @@ export interface IProductContext {
     productsContext: IProductsProps[]
     addFeature: (newProducts: IProductsProps[]) => void
 }
+
+export interface IControllersContent {
+    pathName?: string
+  }

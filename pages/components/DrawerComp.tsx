@@ -5,8 +5,32 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer"
+import { useContext } from "react"
+import { ProductContext } from "./ProductContext"
 
 export default function DrawerComp(){
+  const productContext = useContext(ProductContext)
+  if(!productContext) {
+    throw new Error("useContext(ProductContext) must be used within a CartContextProvider")
+  }
+  const {addFeature,productsContext} = productContext
+
+  const handleLowPrice = () => {
+    const sortedLowToHighPrice = productsContext.sort((a, b) => a.price - b.price)
+    addFeature(sortedLowToHighPrice)
+  }
+  const handleHighPrice = () => {
+    const sortedHighToLowPrice = productsContext.sort((a, b) => b.price - a.price)
+    addFeature(sortedHighToLowPrice)
+  }
+  const handleSortedByNameAsceding = () => {
+    const sortedByNameAscending = productsContext.sort((a, b) => a.name.localeCompare(b.name))
+    addFeature(sortedByNameAscending)
+  }
+  const handleSortedByNameDesceding = () => {
+    const sortedByNameDesceding = productsContext.sort((a,b) => b.name.localeCompare(a.name))
+    addFeature(sortedByNameDesceding)
+  }
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -19,10 +43,10 @@ export default function DrawerComp(){
           </DrawerHeader>
         </div>
         <div className="flex flex-col gap-2 px-4 font-suse text-white mb-6">
-         <p onClick={() => null}>Menor preço</p>
-         <p onClick={() => null}>Maior preço</p>
-         <p onClick={() => null}>A-Z</p>
-         <p onClick={() => null}>Z-A</p>
+         <p onClick={handleLowPrice}>Menor preço</p>
+         <p onClick={handleHighPrice}>Maior preço</p>
+         <p onClick={handleSortedByNameAsceding}>A-Z</p>
+         <p onClick={handleSortedByNameDesceding}>Z-A</p>
         </div>
       </DrawerContent>
     </Drawer>

@@ -1,46 +1,21 @@
-import { useEffect, useState } from "react";
-import DrawerComp from "./components/DrawerComp";
+import { useContext, useEffect, useState } from "react";
+import ControllersContent from "./components/ControllersContent";
 import Header from "./components/Header";
-//import axios from "axios"
+import axios from "axios"
 import { IProductsProps } from "@/services/interfaces";
 import Products from "./components/Products";
 import { GetServerSideProps } from "next";
+import { ProductContext } from "./components/ProductContext";
 
-export default function Home() {
+export default function Home(products: {data: IProductsProps[]}) {
   const [pathName, setPathName] = useState('')
-  const [productToSend, setProductsToSend] = useState<IProductsProps[]>([])
+  const productContext = useContext(ProductContext)
+  if(!productContext) {
+    throw new Error("useContext(ProductContext) must be used within a CartContextProvider")
+  }
+  const { addFeature, productsContext } = productContext
   useEffect(() => {
-    const products = [
-      {
-        id: 1,
-        image: "/creatina_blackskull.jpg",
-        name: "CREATINA BLACK SKULL 300G",
-        type: "CREATINA",
-        price: 119.00
-    },
-    {
-        id: 2,
-        image: "/maxtitanum_creatina_250.jpeg",
-        name: "CREATINA CREAPURE MAXTITANIUM 250G",
-        type: "CREATINA",
-        price: 175
-    },
-    {
-        id: 3,
-        image: "/creatina_monohidratada_300g.jpg",
-        name: "CREATINA DUX 300G",
-        type: "CREATINA",
-        price: 139.00
-    },
-    {
-        id: 4,
-        image: "/HORUS_MAXTITANIUM_LIMAO_300G.jpg",
-        name: "HORUS MAXTITANIUM LIMAO 300G",
-        type: "PRÉTREINO",
-        price: 129.00
-    },
-    ]
-    setProductsToSend(products)
+    addFeature(products.data)
     setPathName(window?.location.pathname === '/' ? 'TUDO' : window.location.pathname)
   },[])
 
@@ -49,24 +24,19 @@ export default function Home() {
       className={`select-none`}
     >
       <Header />
-      <div className="flex justify-between px-4 mb-6">
-        <h1 
-          className="border-2 text-green-600 
-          font-bold border-gray-300 px-2 py-1 
-          w-fit rounded-lg text-sm"
-          >
-          {pathName}
-        </h1>
-        <DrawerComp />
-      </div>
-      {productToSend.length > 0 && <Products data={productToSend}/>}
+      <ControllersContent pathName={pathName}/>
+      {productsContext.length > 0 && <Products data={productsContext}/>}
     </div>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  // https://suplementosesportivosfloripa.vercel.app/
+  const res = await axios.get("https://suplementosesportivosfloripa.vercel.app/api/getProducts")
+  const data = res.data.products
   return {
     props: {
+      data
     }
   }
 }
