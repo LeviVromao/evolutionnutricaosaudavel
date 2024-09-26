@@ -20,4 +20,3 @@ export default function Products(products: { data: IProductsProps[]}){
     </div>
   )
 }
-
