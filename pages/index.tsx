@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import DrawerComp from "./components/DrawerComp";
 import Header from "./components/Header";
 //import axios from "axios"
-import Products from "./components/Products";
 //import { IProductsProps } from "@/services/interfaces";
+import Products from "./components/Products";
 import { GetServerSideProps } from "next";
 
 export default function Home() {
@@ -39,16 +39,14 @@ export default function Home() {
   },
   ]
   useEffect(() => {
-    const metaDescription = document.querySelector('meta[name="description"]')
-    if(metaDescription) {
-      console.log(metaDescription)
+    if(typeof window !== undefined) {
+      if(window.location.pathname === '/') {
+        return setPathName('TUDO')
+      }
+      setPathName(window.location.pathname)
     }
-
-    if(window.location.pathname === '/') {
-      return setPathName('TUDO')
-    }
-    setPathName(window.location.pathname)
   },[])
+
   return (
     <div
       className={`select-none`}
