@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DrawerComp from "./components/DrawerComp";
 import Header from "./components/Header";
-import axios from "axios"
+//import axios from "axios"
 import Products from "./components/Products";
 import { IProductsProps } from "@/services/interfaces";
 import { GetServerSideProps } from "next";
@@ -40,11 +40,8 @@ export default function Home(products: { data:Array<IProductsProps>}) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await axios.get("http://localhost:3000/api/getProducts")
-  const data = res.data.products
   return {
     props: {
-      data
     }
   }
 }
