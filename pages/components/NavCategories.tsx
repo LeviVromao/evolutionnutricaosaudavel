@@ -41,8 +41,8 @@ export default function NavCategories(props: NavCategoriesProps){
             <Link 
               href={`/products/${category.replace(/\s+/g, '')}`}
               className={`flex font-suse font-semibold
-               text-gray-500 ${selectedIndex === index? 
-                'border-b-4 rounded border-gray-800': null}`}
+               text-white ${selectedIndex === index? 
+                'border-b-4 rounded border-white-800': null}`}
                 onClick={() => setSelectedIndex(index)}
               >
                 {category}

@@ -6,6 +6,7 @@ import Products from "../components/Products"
 import ControllersContent from "../components/ControllersContent"
 import { useEffect, useContext } from "react"
 import { ProductContext } from "../components/ProductContext"
+import NavInfo from "../components/NavInfo"
 
 interface ProductsByTypeProps {
     data: IProductsProps[];
@@ -28,8 +29,13 @@ export default function ProductsByType({data, pathName}: ProductsByTypeProps) {
   return (
     <>
       <Header />
-      <ControllersContent pathName={pathName}/>
-      <Products data={productsContext} />
+      <div className="md:flex justify-between md:px-20">
+        <NavInfo pathName={pathName}/>
+        <div className="w-full">
+          <ControllersContent pathName={pathName}/>
+          <Products data={productsContext} />
+        </div>
+      </div>
     </>
   )
 }

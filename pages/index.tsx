@@ -5,6 +5,7 @@ import axios from "axios"
 import { IProductsProps } from "@/services/interfaces";
 import Products from "./components/Products";
 import { GetServerSideProps } from "next";
+import NavInfo from "./components/NavInfo";
 import { ProductContext } from "./components/ProductContext";
 
 export default function Home(products: {data: IProductsProps[]}) {
@@ -24,14 +25,18 @@ export default function Home(products: {data: IProductsProps[]}) {
       className={`select-none`}
     >
       <Header />
-      <ControllersContent pathName={pathName}/>
-      {productsContext.length > 0 && <Products data={productsContext}/>}
+    <div className="md:flex justify-between md:px-20">
+      <NavInfo pathName={pathName}/>
+      <div>
+        <ControllersContent pathName={pathName}/>
+        {productsContext.length > 0 && <Products data={productsContext}/>}
+      </div>
+    </div>
     </div>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  // https://suplementosesportivosfloripa.vercel.app/
   const res = await axios.get("https://suplementosesportivosfloripa.vercel.app/api/getProducts")
   const data = res.data.products
   return {
