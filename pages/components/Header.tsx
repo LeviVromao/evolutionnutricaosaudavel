@@ -19,7 +19,7 @@ export default function Header(){
           <RxHamburgerMenu className="text-2xl text-white sm:hidden"/>
           <Link href={'/'}>
             <Image 
-              src='/logo_first_loja_suple.jpg' 
+              src="/evolution_logo.jpg" 
               className="rounded-full w-12"
               priority
               height={100} 
