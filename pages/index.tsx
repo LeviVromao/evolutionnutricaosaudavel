@@ -22,7 +22,7 @@ export default function Home(products: {data: IProductsProps[]}) {
 
   return (
     <div
-      className={`select-none`}
+      className={`select-none bg-white`}
     >
       <Header />
     <div className="md:flex justify-between md:px-20">
