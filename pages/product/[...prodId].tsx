@@ -32,8 +32,6 @@ export default function Product(product: {data: IProductsProps[]}) {
           </button>
         </Link>
       ))}
-      <video src="/produto_with_whatsapp.mp4" autoPlay muted loop className="h-96 w-96 rounded-xl">
-      </video>
     </div>
   )
 }
