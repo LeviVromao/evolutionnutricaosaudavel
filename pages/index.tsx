@@ -22,7 +22,7 @@ export default function Home(products: {data: IProductsProps[]}) {
 
   return (
     <div
-      className={`select-none bg-white text-white`}
+      className={`select-none bg-white text-black`}
     >
       <Header />
     <div className="md:flex justify-between md:px-20">
