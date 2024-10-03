@@ -8,7 +8,7 @@ import { RxHamburgerMenu } from "react-icons/rx"
 
 export default function Product(product: {data: IProductsProps[]}) {
   return (
-    <div className="flex flex-col gap-10 mb-6 bg-white text-black h-full">
+    <div className="flex flex-col gap-10 mb-6 bg-white text-black h-screen">
       <div className="flex items-center gap-2.5 text-white bg-gray-800 w-full px-4">
           <RxHamburgerMenu className="text-2xl"/>
           <Link href={'/'}>
