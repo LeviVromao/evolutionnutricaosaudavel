@@ -8,12 +8,12 @@ import { RxHamburgerMenu } from "react-icons/rx"
 
 export default function Product(product: {data: IProductsProps[]}) {
   return (
-    <div className="flex flex-col gap-10 mb-6">
+    <div className="flex flex-col gap-10 mb-6 bg-white text-black">
       <div className="flex items-center gap-2.5 text-white bg-gray-800 w-full px-4">
           <RxHamburgerMenu className="text-2xl"/>
           <Link href={'/'}>
             <Image 
-              src='/logo_first_loja_suple.jpg' 
+              src='/evolution_logo.jpg' 
               className="rounded-full w-12 self-center"
               priority
               height={100} 
@@ -26,7 +26,7 @@ export default function Product(product: {data: IProductsProps[]}) {
         <ProductComponent data={product.data} />
       </div>
       {product.data.map((prod, index) => (
-        <Link key={index} href={`https://wa.me/554891121656?text=Olá, me interessei pelo(a) ${prod.name.toLowerCase()} e gostaria de saber mais sobre seus produtos!`} target="_blank" className="self-center cursor-pointer font-suse font-semibold">
+        <Link key={index} href={`https://wa.me/554888066222?text=Olá, me interessei pelo(a) ${prod.name.toLowerCase()} e gostaria de saber mais sobre seus produtos!`} target="_blank" className="self-center cursor-pointer font-suse font-semibold">
           <button style={{backgroundColor: "#25D366", color: "white", border: "none", padding: "10px 20px", borderRadius: "5px", fontSize: "16px"}}>
             Iniciar conversa no WhatsApp
           </button>
